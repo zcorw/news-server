@@ -20,12 +20,12 @@ export class UserEntity extends BaseEntity {
     nullable: false,
     comment: '用户账号',
   })
-  public userName: string;
+  public username: string;
 
   @Exclude({ toPlainOnly: true }) // 输出屏蔽密码
   @Column({
     type: 'varchar',
-    length: 200,
+    length: 300,
     nullable: false,
     comment: '用户登录密码',
   })
@@ -34,7 +34,7 @@ export class UserEntity extends BaseEntity {
   @Exclude({ toPlainOnly: true }) // 输出屏蔽盐
   @Column({
     type: 'varchar',
-    length: 64,
+    length: 40,
     nullable: false,
     comment: '加密盐值',
   })

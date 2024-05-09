@@ -5,3 +5,11 @@ export enum CacheEnum {
    */
   LOGIN_TOKEN_KEY = 'login_tokens:',
 }
+
+// 角色枚举
+export enum RoleEnum {
+  /**
+   * 管理员
+   */
+  ADMIN = 1
+}
