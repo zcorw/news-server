@@ -24,6 +24,7 @@ export class UserEntity extends BaseEntity {
     name: 'user_name',
     length: 30,
     nullable: false,
+    unique: true,
     comment: '用户账号',
   })
   public username: string;
