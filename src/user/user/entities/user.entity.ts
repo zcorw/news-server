@@ -1,6 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { Exclude } from 'class-transformer';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import { BaseEntity } from 'src/common/entities/base';
+import { RoleEntity } from 'src/user/role/entities/role.entity';
 
 @Entity('user', {
   comment: '用户表',
@@ -22,24 +28,28 @@ export class UserEntity extends BaseEntity {
   })
   public username: string;
 
-  @Exclude({ toPlainOnly: true }) // 输出屏蔽密码
   @Column({
     type: 'varchar',
     length: 300,
     nullable: false,
     comment: '用户登录密码',
+    select: false,
   })
   public password: string;
 
-  @Exclude({ toPlainOnly: true }) // 输出屏蔽盐
   @Column({
     type: 'varchar',
     length: 40,
     nullable: false,
     comment: '加密盐值',
+    select: false,
   })
   public salt: string;
 
   @Column({ type: 'timestamp', name: 'login_date', comment: '最后登录时间' })
   public loginDate: Date;
+
+  @ManyToMany(() => RoleEntity)
+  @JoinTable()
+  public roles: RoleEntity[];
 }

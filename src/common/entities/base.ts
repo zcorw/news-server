@@ -2,21 +2,21 @@ import { Column, CreateDateColumn, Entity, UpdateDateColumn } from 'typeorm';
 //基础实体信息
 @Entity()
 export abstract class BaseEntity {
-  //0正常 1停用
   @Column({
-    type: 'char',
+    type: 'enum',
+    enum: ['active', 'disabled'],
     name: 'status',
-    default: '0',
+    default: 'active',
     length: 1,
     comment: '状态',
   })
   public status: string;
 
-  //0代表存在 1代表删除
   @Column({
-    type: 'char',
+    type: 'enum',
+    enum: ['y', 'n'],
     name: 'del_flag',
-    default: '0',
+    default: 'n',
     length: 1,
     comment: '删除标志',
   })

@@ -1,4 +1,4 @@
-import {IsArray, IsOptional, IsString, Length} from 'class-validator';
+import { IsArray, IsOptional, IsString, Length } from 'class-validator';
 
 export class LoginDto {
   @IsString()
