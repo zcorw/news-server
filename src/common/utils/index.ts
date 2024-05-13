@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 import { v4 as uuidv4 } from 'uuid';
 
 export function now() {

@@ -27,7 +27,7 @@ export class UserService {
     const user = await this.userRepo
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.roles', 'role')
-      .where('user.id = :userId', { userId })
+      .where('user.userId = :userId', { userId })
       .getOne();
     return user;
   }

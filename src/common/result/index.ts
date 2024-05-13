@@ -1,4 +1,4 @@
-import {ResultCode} from '../enum/code';
+import { ResultCode } from '../enum/code';
 
 export class ResultData {
   code: number;
