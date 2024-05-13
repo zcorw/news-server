@@ -1,0 +1,21 @@
+db:
+  mysql:
+    host: 'localhost'
+    username: 'root'
+    password: '123456'
+    database: 'test'
+    port: 3306
+    charset: 'utf8mb4'
+    logger: 'file'
+    logging: true
+    multipleStatements: true
+    dropSchema: false
+    # synchronize 正式环境不开启
+    synchronize: true
+    supportBigNumbers: true
+    bigNumberStrings: true
+# jwt 配置
+jwt:
+  secretkey: '8aeb5caddf6009bce798dd363b753dce35abc0d4bcb9d1a4aa464b0d868e3b36'
+  expiresin: '1h'
+  refreshExpiresIn: '2h'

@@ -7,7 +7,6 @@ export abstract class BaseEntity {
     enum: ['active', 'disabled'],
     name: 'status',
     default: 'active',
-    length: 1,
     comment: '状态',
   })
   public status: string;
@@ -17,7 +16,6 @@ export abstract class BaseEntity {
     enum: ['y', 'n'],
     name: 'del_flag',
     default: 'n',
-    length: 1,
     comment: '删除标志',
   })
   public delFlag: string;

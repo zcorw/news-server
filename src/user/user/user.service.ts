@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CacheModule } from '@nestjs/cache-manager';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 import { Repository } from 'typeorm';
 import { UserEntity } from './entities/user.entity';
 import { RegisterDto, LoginDto } from './dto';
@@ -19,7 +20,8 @@ export class UserService {
     private readonly jwtService: JwtService,
     @Inject(RoleService)
     private readonly roleService: RoleService,
-    private readonly cacheModule: CacheModule,
+    @Inject(CACHE_MANAGER)
+    private readonly cacheModule: Cache,
   ) {}
   async findOne(userId: UserEntity['userId']) {
     const user = await this.userRepo
