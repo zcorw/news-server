@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 import { FormValidationPipe } from 'src/common/pipes/FormValidationPipe';
 import { HttpExceptionFilter } from 'src/common/filters/HttpExceptionFilter';
 import { ConfigService } from '@nestjs/config';
+import { ExceptionsFilter } from './common/filters/ExceptionsFilter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -24,6 +25,7 @@ async function bootstrap() {
   const prefix = config.get<string>('app.prefix');
   app.setGlobalPrefix(prefix);
   app.useGlobalPipes(new FormValidationPipe());
+  app.useGlobalFilters(new ExceptionsFilter());
   app.useGlobalFilters(new HttpExceptionFilter());
   // web 安全，防常见漏洞
   // 注意： 开发环境如果开启 nest static module 需要将 crossOriginResourcePolicy 设置为 false 否则 静态资源 跨域不可访问
