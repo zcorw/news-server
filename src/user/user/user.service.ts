@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, BadRequestException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
@@ -71,6 +71,13 @@ export class UserService {
   async create(userInfo: RegisterDto): Promise<UserEntity> {
     const username = userInfo.username;
     const password = userInfo.password;
+    const user = await this.userRepo.findOne({
+      where: { username: userInfo.username },
+      select: ['userId'],
+    });
+    if (user) {
+      throw new BadRequestException('User already exists');
+    }
     const { hashedPassword, salt } = await hashPassword(password);
     const adminRole = await this.roleService.findAdmin();
     const res = await this.userRepo.save({
