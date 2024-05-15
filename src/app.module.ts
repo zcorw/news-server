@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -6,12 +7,11 @@ import { AppService } from './app.service';
 import { AuthModule } from './user/auth/auth.module';
 import { UserModule } from './user/user/user.module';
 import { CacheModule } from '@nestjs/cache-manager';
-import { RoleService } from './user/role/role.service';
-import { RoleController } from './user/role/role.controller';
 import { RoleModule } from './user/role/role.module';
 import configuration from './config/index';
 import { UserEntity } from './user/user/entities/user.entity';
 import { RoleEntity } from './user/role/entities/role.entity';
+import { JwtAuthGuard } from './common/guards/AuthGuard';
 
 @Module({
   imports: [
@@ -44,7 +44,13 @@ import { RoleEntity } from './user/role/entities/role.entity';
     UserModule,
     RoleModule,
   ],
-  controllers: [AppController, RoleController],
-  providers: [AppService, RoleService],
+  controllers: [AppController],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}
