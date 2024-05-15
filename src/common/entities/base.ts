@@ -8,8 +8,9 @@ export abstract class BaseEntity {
     name: 'status',
     default: 'active',
     comment: '状态',
+    select: false,
   })
-  public status: string;
+  public status: 'active' | 'disabled';
 
   @Column({
     type: 'enum',
@@ -17,8 +18,9 @@ export abstract class BaseEntity {
     name: 'del_flag',
     default: 'n',
     comment: '删除标志',
+    select: false,
   })
-  public delFlag: string;
+  public delFlag: 'y' | 'n';
 
   @Column({
     type: 'varchar',
@@ -26,6 +28,7 @@ export abstract class BaseEntity {
     length: 64,
     default: '',
     comment: '创建者',
+    select: false,
   })
   public createBy: string;
 
@@ -42,6 +45,7 @@ export abstract class BaseEntity {
     length: 64,
     default: '',
     comment: '更新者',
+    select: false,
   })
   public updateBy: string;
 
@@ -58,6 +62,7 @@ export abstract class BaseEntity {
     length: 500,
     default: '',
     comment: '备注',
+    select: false,
   })
   public remark: string;
 }

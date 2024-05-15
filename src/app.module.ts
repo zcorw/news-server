@@ -12,6 +12,7 @@ import configuration from './config/index';
 import { UserEntity } from './user/user/entities/user.entity';
 import { RoleEntity } from './user/role/entities/role.entity';
 import { JwtAuthGuard } from './common/guards/AuthGuard';
+import { OverviewModule } from './news/overview/overview.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { JwtAuthGuard } from './common/guards/AuthGuard';
     AuthModule,
     UserModule,
     RoleModule,
+    OverviewModule,
   ],
   controllers: [AppController],
   providers: [
