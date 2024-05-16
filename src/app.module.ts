@@ -13,6 +13,8 @@ import { UserEntity } from './user/user/entities/user.entity';
 import { RoleEntity } from './user/role/entities/role.entity';
 import { JwtAuthGuard } from './common/guards/AuthGuard';
 import { OverviewModule } from './news/overview/overview.module';
+import { OverviewController } from './news/overview/overview.controller';
+import { NewsModule } from './news/news.module';
 
 @Module({
   imports: [
@@ -45,8 +47,9 @@ import { OverviewModule } from './news/overview/overview.module';
     UserModule,
     RoleModule,
     OverviewModule,
+    NewsModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, OverviewController],
   providers: [
     AppService,
     {

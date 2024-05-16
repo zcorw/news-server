@@ -4,9 +4,11 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
+  ManyToOne,
 } from 'typeorm';
 import { BaseEntity } from 'src/common/entities/base';
-import { TagEntity } from './tags.entity';
+import { TagEntity } from './tag.entity';
+import { NewsGroupEntity } from './group.entity';
 
 @Entity('brief', {
   comment: '新闻简报表',
@@ -17,7 +19,7 @@ export class BriefEntity extends BaseEntity {
     name: 'brief_id',
     comment: '新闻ID',
   })
-  public briefId: number;
+  public id: number;
 
   @Column({
     type: 'varchar',
@@ -45,12 +47,16 @@ export class BriefEntity extends BaseEntity {
 
   @Column({
     type: 'tinyint',
-    name: 'is_featured',
-    comment: '是否列为精选',
+    name: 'is_edit',
+    default: 0,
+    comment: '是否编辑过',
   })
-  public isFeatured: 1 | 0;
+  public isEdit: 1 | 0;
 
   @ManyToMany(() => TagEntity)
   @JoinTable()
   public tags: TagEntity[];
+
+  @ManyToOne(() => NewsGroupEntity, (article) => article.briefs)
+  group: NewsGroupEntity;
 }

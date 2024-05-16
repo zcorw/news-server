@@ -10,11 +10,12 @@ export class TagEntity extends BaseEntity {
     name: 'tag_id',
     comment: '标签ID',
   })
-  public tagId: number;
+  public id: number;
 
   @Column({
     type: 'varchar',
     name: 'tag_name',
+    unique: true,
     comment: '标签名称',
   })
   public name: string;
